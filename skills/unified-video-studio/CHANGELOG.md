@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.1 — 2026-11-17
+### Fixed
+- install.sh put backups as `<skill>.bak-<timestamp>` inside agent skills folders, where agents loaded them as a duplicate skill. Older copies of this skill are now replaced; unrelated folders move to `~/.agents/.uvs-backups/<timestamp>/`
+- doctor.py reported TTS as unavailable although `tts.py` works through `uvx`; ComfyUI line now states it checks VRAM only; a hint explains what `--` means
+
 ## 2.1.0 — 2026-11-17
 Agent-agnostic distribution (was Claude Code-first).
 

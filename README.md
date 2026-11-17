@@ -1,7 +1,7 @@
 # uvs — Unified Video Studio
 
 [![smoke](https://github.com/4mGLn/uvs/actions/workflows/smoke.yml/badge.svg)](https://github.com/4mGLn/uvs/actions/workflows/smoke.yml)
-![version](https://img.shields.io/badge/version-2.1.0-blue) ![license](https://img.shields.io/badge/license-MIT-green)
+![version](https://img.shields.io/badge/version-2.1.1-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
 An **agent-agnostic** skill (Agent Skills / `SKILL.md` format) for storyboard-driven
 video production. It works with Claude Code, Codex and any agent that can read
@@ -71,8 +71,10 @@ Options go after `bash -s --`:
 | `--dir PATH` | custom install folder (no agent links unless `--link`) |
 | `--uninstall` | remove the install and the links/copies it created (combine with the same scope options) |
 
-Re-running the installer upgrades in place. Anything else that already sits at a
-target path is moved to `<path>.bak-<timestamp>`. Then it runs `doctor.py` and, if
+Re-running the installer upgrades in place, and older copies of this skill (for
+example a plain copy in `~/.claude/skills`) are replaced. Anything else at a target
+path is moved to `~/.agents/.uvs-backups/<timestamp>/`, outside every skills folder,
+so agents never load a backup as a duplicate skill. Then it runs `doctor.py` and, if
 the required tools are present, the FFmpeg-only smoke test. It needs `bash`, `tar`,
 `curl` or `wget`, and Python ≥ 3.9. Read [install.sh](install.sh) first if you prefer.
 

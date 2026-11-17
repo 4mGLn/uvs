@@ -116,8 +116,10 @@ def main() -> int:
         "manim": bool(opt["manim"]["path"]),
         "auto-editor": bool(opt["auto-editor"]["path"]),
         "whisperx": bool(opt["whisperx"]["path"] or opt["python:whisperx"]["ok"]),
-        "comfyui (needs GPU, >=8GB VRAM recommended)": any((g.get("vram_mb") or 0) >= 8000 for g in report["gpu"]["gpus"]),
-        "tts (edge-tts)": bool(opt["edge-tts"]["path"] or opt["python:edge_tts"]["ok"]),
+        # hardware check only: whether ComfyUI itself is installed/running is not probed
+        "comfyui (GPU with >=8GB VRAM; ComfyUI install not checked)": any((g.get("vram_mb") or 0) >= 8000 for g in report["gpu"]["gpus"]),
+        # tts.py falls back to `uvx --from edge-tts edge-tts`, so uvx alone is enough
+        "tts (edge-tts, or via uvx)": bool(opt["edge-tts"]["path"] or opt["python:edge_tts"]["ok"] or opt["uvx"]["path"]),
     }
 
     text = json.dumps(report, indent=2, ensure_ascii=False)
@@ -135,6 +137,10 @@ def main() -> int:
             print(f"  [{'ready' if v else ' -- '}] {k}")
         g = report["gpu"]["gpus"]
         print("== gpu ==\n  " + (", ".join(f"{x['name']} ({x['vram_mb']} MB)" for x in g) if g else "none detected"))
+        missing = [k for k, v in report["engines_ready"].items() if not v]
+        if missing:
+            print("hint: '--' means not installed (or, for comfyui, not enough VRAM); install steps are in\n"
+                  "      references/engines/<engine>.md. Built-in shots work without any of them.")
         if not report["required"]["korean_font"]["path"]:
             print("hint: install a Hangul font, e.g. `sudo apt install fonts-noto-cjk` or fonts-nanum")
         print(f"\nrequired_ok={req_ok}  (full report: --json)")

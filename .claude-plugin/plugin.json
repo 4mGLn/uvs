@@ -1,6 +1,6 @@
 {
   "name": "uvs",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Unified Video Studio: storyboard-driven video production (FFmpeg title/image cards, Remotion, HyperFrames, Blender, Manim, ComfyUI) with voiceover, captions, loudness normalization and automated QA. Korean-first.",
   "author": {"name": "aMgLn", "url": "https://github.com/4mGLn"},
   "homepage": "https://github.com/4mGLn/uvs",

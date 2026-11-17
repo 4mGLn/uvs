@@ -17,7 +17,12 @@ jobs:
       - name: Agent links with a throwaway HOME
         run: |
           H="$RUNNER_TEMP/home"; mkdir -p "$H/.claude" "$H/.codex"
+          mkdir -p "$H/.claude/skills/unified-video-studio" "$H/.codex/skills/unified-video-studio"
+          printf -- '---\nname: unified-video-studio\n---\n' > "$H/.claude/skills/unified-video-studio/SKILL.md"  # old plain copy
+          echo foreign > "$H/.codex/skills/unified-video-studio/notes.txt"                                     # unrelated folder
           HOME="$H" bash install.sh --no-test
+          ! ls -d "$H"/.claude/skills/*.bak-* "$H"/.codex/skills/*.bak-* 2>/dev/null
+          ls "$H"/.agents/.uvs-backups/*/*notes* >/dev/null 2>&1 || ls -R "$H/.agents/.uvs-backups" | grep -q notes.txt
           test -f "$H/.agents/skills/unified-video-studio/SKILL.md"
           test -L "$H/.claude/skills/unified-video-studio" && test -f "$H/.claude/skills/unified-video-studio/SKILL.md"
           test -L "$H/.codex/skills/unified-video-studio" && test -f "$H/.codex/skills/unified-video-studio/SKILL.md"

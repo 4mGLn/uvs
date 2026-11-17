@@ -125,11 +125,16 @@ else
   [[ -n "$SRC" && -f "$SRC/SKILL.md" ]] || die "archive does not contain skills/$SKILL"
 fi
 
-backup() {  # replace our own previous install; move anything else out of the way
+# Backups go OUTSIDE every skills folder: agents scan those folders and would load
+# a "<name>.bak-*" directory as a second, duplicate skill.
+BACKUP_ROOT="$BASE/.agents/.uvs-backups/$STAMP"
+backup() {  # replace any previous install of this skill; move anything else out of the way
   if [[ -L "$1" ]]; then rm "$1"
-  elif [[ -f "$1/.uvs-installed-copy" ]] || { [[ "$1" == "$DEST" ]] && is_our_skill "$1"; }; then
-    rm -rf "$1"
-  elif [[ -e "$1" ]]; then mv "$1" "$1.bak-$STAMP"; say "existing $1 moved to $1.bak-$STAMP"
+  elif [[ -f "$1/.uvs-installed-copy" ]] || is_our_skill "$1"; then
+    rm -rf "$1"   # an older copy of this same skill (reinstallable from git)
+  elif [[ -e "$1" ]]; then
+    local dst="$BACKUP_ROOT/$(echo "$1" | sed 's|^/||; s|/|__|g')"
+    mkdir -p "$BACKUP_ROOT"; mv "$1" "$dst"; say "existing $1 moved to $dst"
   fi
 }
 

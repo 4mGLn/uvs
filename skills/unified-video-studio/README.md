@@ -1,6 +1,6 @@
 # Unified Video Studio Skill
 
-Version 2.1.0 (2026-11-17). Agent-agnostic skill (SKILL.md format) for storyboard-driven video production:
+Version 2.1.1 (2026-11-17). Agent-agnostic skill (SKILL.md format) for storyboard-driven video production:
 one engine per shot, FFmpeg assembly, voiceover/music/captions, loudness
 normalization and an automated quality gate. Korean-first defaults.
 
