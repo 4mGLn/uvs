@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0 — 2026-11-17
+Agent-agnostic distribution (was Claude Code-first).
+
+### Changed
+- `install.sh` installs to the shared `~/.agents/skills/` (or `./.agents/skills/` with `--project`) and symlinks into detected agents: Claude Code (`~/.claude/skills`, project `.claude/skills`), Codex (`$CODEX_HOME/skills`); `--link DIR` (repeatable), `--copy`, `--no-link`; upgrades replace the previous install in place; uninstall also removes the links/copies it created; relative symlinks
+- README: agent-neutral install guide and copy-paste prompts; Claude plugin marketplace is now an optional channel
+
+### Added
+- `AGENTS.md` with `CLAUDE.md` and `AGENT.md` symlinks; `.agents/skills/unified-video-studio` symlink for in-repo discovery
+- CI checks the agent links with a throwaway HOME
+
 ## 2.0.0 — 2026-11-17
 Made the skill usable end-to-end with FFmpeg alone; scripts now implement what SKILL.md describes.
 

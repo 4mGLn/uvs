@@ -1,6 +1,6 @@
 # Unified Video Studio Skill
 
-Version 2.0.0 (2026-11-17). Claude Code skill for storyboard-driven video production:
+Version 2.1.0 (2026-11-17). Agent-agnostic skill (SKILL.md format) for storyboard-driven video production:
 one engine per shot, FFmpeg assembly, voiceover/music/captions, loudness
 normalization and an automated quality gate. Korean-first defaults.
 
@@ -13,15 +13,16 @@ the skill routes to when `doctor.py` reports them ready.
 ```bash
 curl -fsSL https://raw.githubusercontent.com/4mGLn/uvs/main/install.sh | bash
 ```
-Other options (agent prompt, project scope, plugin marketplace): see the repository
-README at https://github.com/4mGLn/uvs. The installer runs `doctor.py` and the smoke test.
+Installs to `~/.agents/skills/` and links into detected agents (Claude Code, Codex);
+`--link <dir>` for others. Agent prompt, project scope and plugin marketplace: see
+https://github.com/4mGLn/uvs. The installer runs `doctor.py` and the smoke test.
 
 Requirements: Python ≥ 3.9 (stdlib only), FFmpeg with libx264/aac/drawtext/libass,
 a Hangul font (`sudo apt install fonts-noto-cjk` or `fonts-nanum`; macOS/Windows have one).
 
 ## Quick start (manual)
 ```bash
-S=~/.claude/skills/unified-video-studio/scripts
+S=~/.agents/skills/unified-video-studio/scripts
 python3 $S/init_project.py myvideo --title "제품 소개" --duration 30
 # edit myvideo/storyboard.json
 python3 $S/build.py --project myvideo --placeholders     # animatic

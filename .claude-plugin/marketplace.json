@@ -1,13 +1,13 @@
 {
   "name": "uvs",
   "owner": {"name": "aMgLn", "url": "https://github.com/4mGLn"},
-  "metadata": {"description": "Unified Video Studio skill for Claude Code"},
+  "metadata": {"description": "Unified Video Studio agent skill (also installable via install.sh for any agent)"},
   "plugins": [
     {
       "name": "uvs",
       "source": "./",
       "description": "Storyboard-driven video production with FFmpeg assembly, captions, loudness normalization and QA.",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "category": "productivity"
     }
   ]
