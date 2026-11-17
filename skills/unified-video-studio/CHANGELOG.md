@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0 — 2026-11-17
+### Added
+- install.sh offers to install missing tools: per-tool prompt in an interactive terminal (default no, sizes shown); `--with ffmpeg,blender,manim,auto-editor,whisperx,edge-tts|all` for agents and pipes; `--no-extras` to opt out. Python tools via `uv tool install`, FFmpeg/Blender/Manim libraries via apt or Homebrew; sudo only from a terminal or with a cached password, otherwise the command is printed. ComfyUI is never installed automatically
+- CI installs auto-editor through `--with` to exercise the path
+
 ## 2.1.1 — 2026-11-17
 ### Fixed
 - install.sh put backups as `<skill>.bak-<timestamp>` inside agent skills folders, where agents loaded them as a duplicate skill. Older copies of this skill are now replaced; unrelated folders move to `~/.agents/.uvs-backups/<timestamp>/`

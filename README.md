@@ -1,7 +1,7 @@
 # uvs — Unified Video Studio
 
 [![smoke](https://github.com/4mGLn/uvs/actions/workflows/smoke.yml/badge.svg)](https://github.com/4mGLn/uvs/actions/workflows/smoke.yml)
-![version](https://img.shields.io/badge/version-2.1.1-blue) ![license](https://img.shields.io/badge/license-MIT-green)
+![version](https://img.shields.io/badge/version-2.2.0-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
 An **agent-agnostic** skill (Agent Skills / `SKILL.md` format) for storyboard-driven
 video production. It works with Claude Code, Codex and any agent that can read
@@ -38,18 +38,18 @@ Paste one of these into your agent (Claude Code, Codex, Gemini CLI, Cursor, …)
 Install the "unified-video-studio" agent skill from https://github.com/4mGLn/uvs
 (follow the repo's AGENTS.md). Run:
 curl -fsSL https://raw.githubusercontent.com/4mGLn/uvs/main/install.sh | bash
-If you don't read ~/.agents/skills, ~/.claude/skills or ~/.codex/skills, re-run it with
-`bash -s -- --link <your skills folder>`. Show me the doctor.py and smoke test results.
-If FFmpeg or a Hangul font is missing, tell me the install command for my OS and ask
-before running it.
+If you don't read ~/.agents/skills, ~/.claude/skills or ~/.codex/skills, add
+`--link <your skills folder>`. Show me the doctor.py result, then ask me which missing
+tools to install (ffmpeg, blender, manim, auto-editor, whisperx) and re-run the installer
+with `bash -s -- --with <my choices>`. Ask before anything that needs sudo.
 ```
 
 ```text
 https://github.com/4mGLn/uvs 의 unified-video-studio 에이전트 스킬을 설치해줘(레포의 AGENTS.md 참고).
 curl -fsSL https://raw.githubusercontent.com/4mGLn/uvs/main/install.sh | bash 를 실행하고,
-네가 ~/.agents/skills, ~/.claude/skills, ~/.codex/skills 를 읽지 않으면
-`bash -s -- --link <너의 스킬 폴더>` 로 다시 실행해. doctor와 smoke 테스트 결과를 보여주고,
-FFmpeg나 한글 폰트가 없으면 내 OS에 맞는 설치 명령을 알려준 뒤 실행 전에 물어봐.
+네가 ~/.agents/skills, ~/.claude/skills, ~/.codex/skills 를 읽지 않으면 `--link <너의 스킬 폴더>`를 붙여.
+doctor 결과를 보여주고, 설치 안 된 도구(ffmpeg, blender, manim, auto-editor, whisperx) 중
+무엇을 설치할지 나에게 물어본 뒤 `bash -s -- --with <내 선택>` 으로 다시 실행해. sudo가 필요하면 먼저 물어봐.
 ```
 
 ### 2. One-line install (curl)
@@ -67,9 +67,20 @@ Options go after `bash -s --`:
 | `--link DIR` | also expose the skill in `DIR` (repeatable), e.g. `--link ~/.gemini/skills` |
 | `--copy` | copy instead of symlink, for tools that do not follow symlinks |
 | `--no-link` | only the shared install; touch no agent folder |
-| `--ref v2.1.0` | install a specific tag or branch |
+| `--with LIST` | also install tools: `ffmpeg` (+Hangul font), `blender`, `manim`, `auto-editor`, `whisperx`, `edge-tts`, or `all` |
+| `--no-extras` | never offer to install anything beyond the skill |
+| `--ref v2.2.0` | install a specific tag or branch |
 | `--dir PATH` | custom install folder (no agent links unless `--link`) |
 | `--uninstall` | remove the install and the links/copies it created (combine with the same scope options) |
+
+**Missing tools.** In an interactive terminal the installer asks, per missing tool,
+whether to install it (default *no*, with the download size). Under `curl … | bash`
+from an agent or any non-terminal run, nothing is asked: it lists what is missing and
+you choose with `--with`. Python tools are installed with `uv tool install`; Blender,
+FFmpeg and Manim's system libraries use apt/Homebrew and need sudo. sudo is only run
+from a terminal or with an already cached password; otherwise the command is printed.
+ComfyUI is never installed automatically. `--` in doctor means "not installed",
+except ComfyUI, where it means the GPU has less than 8 GB of VRAM.
 
 Re-running the installer upgrades in place, and older copies of this skill (for
 example a plain copy in `~/.claude/skills`) are replaced. Anything else at a target

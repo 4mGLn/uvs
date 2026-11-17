@@ -7,7 +7,7 @@
       "name": "uvs",
       "source": "./",
       "description": "Storyboard-driven video production with FFmpeg assembly, captions, loudness normalization and QA.",
-      "version": "2.1.1",
+      "version": "2.2.0",
       "category": "productivity"
     }
   ]

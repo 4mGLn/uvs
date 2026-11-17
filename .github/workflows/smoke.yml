@@ -28,5 +28,11 @@ jobs:
           test -L "$H/.codex/skills/unified-video-studio" && test -f "$H/.codex/skills/unified-video-studio/SKILL.md"
           HOME="$H" bash install.sh --uninstall
           test ! -e "$H/.agents/skills/unified-video-studio" && test ! -e "$H/.claude/skills/unified-video-studio"
+      - uses: astral-sh/setup-uv@v6
+      - name: Optional tool install via --with (non-interactive)
+        run: |
+          H="$RUNNER_TEMP/home2"; mkdir -p "$H"
+          HOME="$H" bash install.sh --no-test --with auto-editor | tee "$RUNNER_TEMP/with.log"
+          grep -q "auto-editor: ready" "$RUNNER_TEMP/with.log"
       - name: Validate plugin manifests (JSON)
         run: python3 -c "import json;[json.load(open(f)) for f in ('.claude-plugin/plugin.json','.claude-plugin/marketplace.json')]"

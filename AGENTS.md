@@ -21,9 +21,12 @@ agent that can read `SKILL.md` and run shell commands can use it.
    (add `-s -- --project` for the current repo only). Without network piping,
    run `git clone https://github.com/4mGLn/uvs && bash uvs/install.sh`.
 2. Show the user the `doctor.py` output and the smoke test result printed by the installer.
-3. If FFmpeg or a Hangul font is missing, give the OS-specific command
-   (`sudo apt install ffmpeg fonts-noto-cjk`, `brew install ffmpeg`, `winget install Gyan.FFmpeg`)
-   and ask before running anything with `sudo`.
+   `--` means "not installed" (for comfyui: GPU below 8 GB VRAM), not a hardware problem.
+3. The installer does not prompt when run by an agent. Ask the user which missing tools
+   they want (ffmpeg, blender, manim, auto-editor, whisperx, edge-tts; comfyui is never
+   automatic), then re-run with `bash -s -- --with <list>`. Tell them first when a choice
+   needs sudo (ffmpeg/blender/manim libs on Linux); without a cached sudo password the
+   installer prints the command instead of running it — relay it to the user.
 4. If your agent does not read `~/.agents/skills`, `~/.claude/skills` or `~/.codex/skills`,
    re-run with `--link <your skills folder>`. If it has no skills feature at all, read
    `~/.agents/skills/unified-video-studio/SKILL.md` at the start of a video task and follow it.
