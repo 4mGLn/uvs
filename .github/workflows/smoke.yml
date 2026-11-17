@@ -1,0 +1,18 @@
+name: smoke
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg and Hangul fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Install via install.sh (local checkout) and run smoke test
+        run: bash install.sh --dir "$RUNNER_TEMP/skill"
+      - name: Smoke test (fail the job on errors)
+        run: python3 -I "$RUNNER_TEMP/skill/tests/smoke_test.py"
+      - name: Validate plugin manifests (JSON)
+        run: python3 -c "import json;[json.load(open(f)) for f in ('.claude-plugin/plugin.json','.claude-plugin/marketplace.json')]"

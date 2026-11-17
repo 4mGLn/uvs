@@ -1,0 +1,16 @@
+{
+  "title": "Untitled video",
+  "goal": "Explain the product in one sentence",
+  "audience": "general",
+  "language": "ko",
+  "duration_s": 30,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "style": "modern minimal",
+  "brand": {"primary": "#101820", "accent": "#F2AA4C", "font": ""},
+  "cta": "",
+  "delivery": {"platform": "youtube", "loudness_lufs": -14},
+  "assets": [],
+  "rights_notes": []
+}

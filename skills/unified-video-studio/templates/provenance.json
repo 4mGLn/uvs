@@ -1,0 +1,17 @@
+{
+  "tools": [
+    {"name": "ffmpeg", "version": "", "license": "LGPL/GPL (build-dependent)"}
+  ],
+  "assets": [
+    {"path": "assets/example.png", "type": "image", "source": "self-made | URL | vendor", "license": "owned | CC-BY-4.0 | commercial", "attribution": "", "notes": ""}
+  ],
+  "generations": [
+    {"shot": "shot-00X", "tool": "comfyui", "model": "", "model_license": "", "seed": 0, "prompt": "", "negative_prompt": "", "workflow_file": "scenes/shot-00X.workflow.json"}
+  ],
+  "voice": [
+    {"shot": "shot-00X", "provider": "", "voice": "", "terms": ""}
+  ],
+  "music": [
+    {"path": "assets/music.mp3", "source": "", "license": "", "attribution": ""}
+  ]
+}

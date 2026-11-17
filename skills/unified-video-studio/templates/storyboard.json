@@ -1,0 +1,56 @@
+{
+  "shots": [
+    {
+      "id": "shot-001",
+      "start_s": 0,
+      "duration_s": 5,
+      "purpose": "hook",
+      "engine": "ffmpeg-title",
+      "on_screen_text": "핵심 메시지 한 줄",
+      "visual_direction": "kinetic typography on brand color",
+      "voiceover": "",
+      "style": {"bg": "#101820", "fg": "#FFFFFF", "accent": "#F2AA4C", "subtitle": "보조 문구"},
+      "assets": [],
+      "transition": "fade",
+      "transition_s": 0.6
+    },
+    {
+      "id": "shot-002",
+      "start_s": 5,
+      "duration_s": 8,
+      "purpose": "problem",
+      "engine": "hyperframes",
+      "on_screen_text": "문제 상황",
+      "visual_direction": "UI mockup with animated pain points",
+      "voiceover": "",
+      "assets": [],
+      "transition": "cut"
+    },
+    {
+      "id": "shot-003",
+      "start_s": 13,
+      "duration_s": 12,
+      "purpose": "solution",
+      "engine": "remotion",
+      "on_screen_text": "해결 방법",
+      "visual_direction": "dashboard chart animation, frame-deterministic",
+      "voiceover": "",
+      "assets": [],
+      "transition": "fade",
+      "transition_s": 0.6
+    },
+    {
+      "id": "shot-004",
+      "start_s": 25,
+      "duration_s": 5,
+      "purpose": "cta",
+      "engine": "ffmpeg-title",
+      "on_screen_text": "지금 시작하세요",
+      "visual_direction": "logo + call to action",
+      "voiceover": "",
+      "style": {"bg": "#F2AA4C", "fg": "#101820", "subtitle": "example.com"},
+      "assets": [],
+      "transition": "cut"
+    }
+  ]
+}
